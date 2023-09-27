@@ -1,0 +1,58 @@
+<div class="w-full h-screen">
+    <!-- {Navbar} -->
+    <div class="w-full h-[70px] bg-green-500 flex items-center">
+        <div class="w-[20%] flex justify-center">
+            <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png"
+                alt="" class=" h-[30px]">
+        </div>
+        <div class="w-[50%]">
+            <input type="text" placeholder="Search anythings"
+                class="w-full focus:outline-violet-500 py-2 rounded-md pl-5">
+        </div>
+        <div class="w-[20%] text-md font-semibold text-yellow-50 flex justify-center cursor-pointer">
+            <h1 class="border-[1.5px] py-[7px] rounded-md px-9 hover:bg-blue-400 duration-500 hover:text-white">Login
+            </h1>
+        </div>
+        <div class="w-[10%] flex justify-center cursor-pointer relative" (click)='toggle()'>
+            <img src="../../assets/pngtree-shopping-cart-convenient-icon-image_1287807.jpg" alt=""
+                class="w-[40px] rounded-md">
+            <div class="w-4 h-4 rounded-full absolute ml-10 top-[-10px] flex justify-center items-center bg-blue-400 text-[12px] font-semibold text-white">
+                {{addItemCount}}
+            </div>
+        </div>
+    </div>
+    <div class="w-full text-2xl text-fuchsia-500 font-extralight pl-10 my-7">
+        <h1>Flash Deals</h1>
+    </div>
+    <div>
+        <app-cart *ngIf="Toggle"></app-cart>
+    </div>  
+    <!-- {imageloop} -->
+    <div class="w-full h-full">
+        <div class="w-full flex flex-wrap justify-center gap-5">
+            <div *ngFor="let data of getapidata; let i=index"
+                class="w-[280px] shadow-md border-[1.5px] my-3 rounded-[4px] pb-4 hover:translate-y-3">
+                <div class="w-full flex justify-center mt-5">
+                    <img src={{data.image}} alt="" class="h-48">
+                </div>
+                <div class="w-full pl-5">
+                    <div class="w-full h-5 overflow-hidden font-semibold my-3">
+                        {{data.title}}
+                    </div>
+                    <div class="w-full my-3">
+                        <h1><span class="font-semibold text-md ">Rs:</span><span
+                                class="font-bold text-md text-pink-500"> {{data.price|currency}}</span></h1>
+                    </div>
+                    <div>
+                        <button type="button"
+                            class=" px-3 py-2 font-semibold text-white bg-orange-500 text-[14px] rounded-[3px] "
+                            (click)="addcart(data)" *ngIf="(data.id)"> Add to cart</button>
+                    </div>
+                </div>
+                <!-- <input type="number" value="1" min="1" max="10" *ngIf="checkCartStatus(data.id)" /> -->
+                <!-- <button (click)="removeproduct(data.id)" [disabled]="!checkCartStatus(data.id)">Remove</button> -->
+                <!-- <button (click)="removeproduct(data.id)">Remove</button> -->
+            </div>
+        </div>
+    </div>
+</div>

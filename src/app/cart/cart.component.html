@@ -1,0 +1,33 @@
+<div class="w-96 h-60 absolute right-0 bg-white border-[1.7px] shadow-md top-[70px] z-[500] overflow-y-scroll">
+    <div class="w-full flex justify-between" *ngIf="products.length > 0 else noItem">
+        <div class="w-[20%]">
+            <h1>Image</h1>
+        </div>
+        <div class="w-[40%]">
+            <h1>Title</h1>
+        </div>
+        <div class="10%">
+            <h1>Price</h1>
+        </div>
+        <div class="30%">
+            <h1>Remove</h1>
+        </div>
+    </div>
+    <ng-container *ngFor="let item of products;let i=index">
+        <div class="w-full flex justify-between items-center my-2">
+            <div class="w-[25%]">
+                <img src={{item.image}} alt="" class="w-[70px] border">
+            </div>
+            <div class="w-[45%]"> {{item.title}}</div>
+            <div class="w-[14%]"> {{item.price|currency}} </div>
+            <div class="w-[17%]">
+                <button (click)="RemoveProduct(item.id)"
+                    class="bg-orange-300 py-1 px-1 rounded-[3px] font-semibold text-sm">Remove</button>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #noItem>
+        <h1 class="text-center">Cart is Empty</h1>
+    </ng-template>
+
+</div>
